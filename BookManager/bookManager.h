@@ -10,7 +10,7 @@ public:
 	bool deleteBook(string = "", int = 0);
 	bool borrowBook(string = "", int = 0);
 	bool returnBook(string = "", int = 0);
-	int searchBook(string = "");
+	inline int searchBook(string = "");
 	void menu();
 private:
 	vector<Book> bookList;

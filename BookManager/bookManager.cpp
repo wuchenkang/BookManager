@@ -127,71 +127,99 @@ void BookManager::menu() {
 		while (getchar() != '\n');
 		amount = -1;
 		switch (option) {
-			case '1':
-				cout << "***Please enter the name of the book ***" << endl;
-				cout << "***and the amount of the book        ***" << endl;
-				cout << "***in a new line                     ***" << endl;
-				getline(cin, name);
+		case '1':
+			cout << "***Please enter the name of the book ***" << endl;
+			cout << "***and the amount of the book        ***" << endl;
+			cout << "***in a new line                     ***" << endl;
+			getline(cin, name);
+			cin >> amount;
+			while (cin.fail()) {
+				cout << "***Please enter a integer number!    ***" << endl;
+				cin.clear();
+				cin.sync();
+				while (getchar() != '\n');
 				cin >> amount;
-				addBook(name, amount);
-				cout << "***Add successfully!!!               ***" << endl;
-				break;
-			case '2':
-				cout << "***Please enter the name of the book ***" << endl;
-				cout << "***and the amount of the book        ***" << endl;
-				getline(cin, name);
+			}
+			addBook(name, amount);
+			cout << "***Add successfully!!!               ***" << endl;
+			break;
+		case '2':
+			cout << "***Please enter the name of the book ***" << endl;
+			cout << "***and the amount of the book        ***" << endl;
+			getline(cin, name);
+			cin >> amount;
+			while (cin.fail()) {
+				cout << "***Please enter a integer number!    ***" << endl;
+				cin.clear();
+				cin.sync();
+				while (getchar() != '\n');
 				cin >> amount;
-				ok = deleteBook(name, amount);
-				if (ok) {
-					cout << "***Delete successfully!!!            ***" << endl;
-				}
-				else {
-					cout << "***Fail to delete the book!!!        ***" << endl;
-				}
-				break;
-			case '3':
-				cout << "***Please enter the name of the book ***" << endl;
-				cout << "***and the amount of the book        ***" << endl;
-				getline(cin, name);
+			}
+			ok = deleteBook(name, amount);
+			if (ok) {
+				cout << "***Delete successfully!!!            ***" << endl;
+			}
+			else {
+				cout << "***Fail to delete the book!!!        ***" << endl;
+			}
+			break;
+		case '3':
+			cout << "***Please enter the name of the book ***" << endl;
+			cout << "***and the amount of the book        ***" << endl;
+			getline(cin, name);
+			cin >> amount;
+			while (cin.fail()) {
+				cout << "***Please enter a integer number!    ***" << endl;
+				cin.clear();
+				cin.sync();
+				while (getchar() != '\n');
 				cin >> amount;
-				ok = borrowBook(name, amount);
-				if (ok) {
-					cout << "***Borrow successfully!!!            ***" << endl;
-				}
-				else {
-					cout << "***Fail to borrow the book!!!        ***" << endl;
-				}
-				break;
-			case '4':
-				cout << "***Please enter the name of the book ***" << endl;
-				cout << "***and the amount of the book        ***" << endl;
-				getline(cin, name);
+			}
+			ok = borrowBook(name, amount);
+			if (ok) {
+				cout << "***Borrow successfully!!!            ***" << endl;
+			}
+			else {
+				cout << "***Fail to borrow the book!!!        ***" << endl;
+			}
+			break;
+		case '4':
+			cout << "***Please enter the name of the book ***" << endl;
+			cout << "***and the amount of the book        ***" << endl;
+			getline(cin, name);
+			cin >> amount;
+			while (cin.fail()) {
+				cout << "***Please enter a integer number!    ***" << endl;
+				cin.clear();
+				cin.sync();
+				while (getchar() != '\n');
 				cin >> amount;
-				ok = returnBook(name, amount);
-				if (ok) {
-					cout << "***Return successfully!!!            ***" << endl;
-				}
-				else {
-					cout << "***Book not found!                   ***" << endl;
-				}
-				break;
-			case '5':
-				cout << "***Please enter the name of the book ***" << endl;
-				getline(cin, name);
-				index = searchBook(name);
-				if (index == -1) {
-					cout << "***Book not found!!!                 ***" << endl;
-				}
-				else {
-					printInformation(index);
-				}
-				break;
-			case '6':
-				cout << endl << "Thank you for using our book manage system!" << endl;
-				exit(0);
-				break;
-			default:
-				break;
+			}
+			ok = returnBook(name, amount);
+			if (ok) {
+				cout << "***Return successfully!!!            ***" << endl;
+			}
+			else {
+				cout << "***Book not found!                   ***" << endl;
+			}
+			break;
+		case '5':
+			cout << "***Please enter the name of the book ***" << endl;
+			getline(cin, name);
+			index = searchBook(name);
+			if (index == -1) {
+				cout << "***Book not found!!!                 ***" << endl;
+			}
+			else {
+				printInformation(index);
+			}
+			break;
+		case '6':
+			cout << endl << "Thank you for using our book manage system!" << endl;
+			exit(0);
+			break;
+		default:
+			break;
 		}
 		cout << "***Please choose what to do next     ***" << endl << endl;
 		cout << "****************************************" << endl;
