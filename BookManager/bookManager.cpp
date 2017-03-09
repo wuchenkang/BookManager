@@ -1,4 +1,11 @@
 #include "bookManager.h"
+#include <cstdlib>
+#include <cstdio>
+#include <fstream>
+
+BookManager::BookManager() {
+	readFile();
+}
 
 void BookManager::addBook(string name, int amount) {
 	int index = searchBook(name);
@@ -103,6 +110,11 @@ int BookManager::searchBook(string name) {
 }
 
 void BookManager::menu() {
+	cout << "       **** *     *  ****   *    *      " << endl;
+	cout << "      *       * *   *       *    *      " << endl;
+	cout << "       ****    *     ****   *    *      " << endl;
+	cout << "           *   *         *  *    *      " << endl;
+	cout << "       ****    *     ****    ****       " << endl << endl;
 
 	cout << "****************************************" << endl;
 	cout << "*          Book Manage System          *" << endl;
@@ -131,7 +143,7 @@ void BookManager::menu() {
 			cout << "***Please enter the name of the book ***" << endl;
 			cout << "***and the amount of the book        ***" << endl;
 			cout << "***in a new line                     ***" << endl;
-			getline(cin, name);
+			while (getline(cin, name) && name == "");
 			cin >> amount;
 			while (cin.fail()) {
 				cout << "***Please enter a integer number!    ***" << endl;
@@ -146,7 +158,7 @@ void BookManager::menu() {
 		case '2':
 			cout << "***Please enter the name of the book ***" << endl;
 			cout << "***and the amount of the book        ***" << endl;
-			getline(cin, name);
+			while (getline(cin, name) && name == "");
 			cin >> amount;
 			while (cin.fail()) {
 				cout << "***Please enter a integer number!    ***" << endl;
@@ -166,7 +178,7 @@ void BookManager::menu() {
 		case '3':
 			cout << "***Please enter the name of the book ***" << endl;
 			cout << "***and the amount of the book        ***" << endl;
-			getline(cin, name);
+			while (getline(cin, name) && name == "");
 			cin >> amount;
 			while (cin.fail()) {
 				cout << "***Please enter a integer number!    ***" << endl;
@@ -186,7 +198,7 @@ void BookManager::menu() {
 		case '4':
 			cout << "***Please enter the name of the book ***" << endl;
 			cout << "***and the amount of the book        ***" << endl;
-			getline(cin, name);
+			while (getline(cin, name) && name == "");
 			cin >> amount;
 			while (cin.fail()) {
 				cout << "***Please enter a integer number!    ***" << endl;
@@ -205,7 +217,7 @@ void BookManager::menu() {
 			break;
 		case '5':
 			cout << "***Please enter the name of the book ***" << endl;
-			getline(cin, name);
+			while (getline(cin, name) && name == "");
 			index = searchBook(name);
 			if (index == -1) {
 				cout << "***Book not found!!!                 ***" << endl;
@@ -215,7 +227,8 @@ void BookManager::menu() {
 			}
 			break;
 		case '6':
-			cout << endl << "Thank you for using our book manage system!" << endl;
+			saveFile();
+			cout << "Thank you for using our book manage system!" << endl;
 			exit(0);
 			break;
 		default:
@@ -271,4 +284,40 @@ inline int BookManager::findLocation(string name) {
 	}
 
 	return index + 1;
+}
+
+void BookManager::saveFile() {
+	ofstream bookFile;
+	bookFile.open("bookFile.txt");
+	if (bookFile.is_open()) {
+		int size = bookList.size();
+		bookFile << size << endl;
+		for (int i = 0; i < size; i++) {
+			bookFile << bookList[i].getName() << endl << bookList[i].getAmount() << endl << bookList[i].getAvailable() << endl;
+		}
+		bookFile.close();
+		return;
+	}
+	else {
+		cout << "Fuck" << endl;
+		return;
+	}
+}
+
+void BookManager::readFile() {
+	ifstream bookFile;
+	bookFile.open("bookFile.txt");
+	if (bookFile.is_open()) {
+		int size, amount, available;
+		string name;
+		bookFile >> size;
+		for (int i = 0; i < size; i++) {
+			getline(bookFile, name);
+			getline(bookFile, name);
+			bookFile >> amount >> available;
+			Book temp(name, amount, available);
+			bookList.push_back(temp);
+		}
+	}
+	return;
 }

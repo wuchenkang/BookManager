@@ -7,6 +7,7 @@ using namespace std;
 class Book {
 public:
 	Book(string, int);
+	Book(string, int, int);
 	void setName(string);
 	string getName();
 	void setAmount(int);
