@@ -1,2 +1,2 @@
 # BookManager
-This is a simple book manage application writen using C++.
+这是一个用C++写的简单命令行图书管理程序
