@@ -11,7 +11,7 @@ public:
 	bool borrowBook(string = "", int = 0);
 	bool returnBook(string = "", int = 0);
 	inline int searchBook(string = "");
-	void menu();
+	inline void menu();
 private:
 	vector<Book> bookList;
 	void printInformation(int);
